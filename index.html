@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Master Solar | Solar, engineered like it matters</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* RESET & BASE */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f4f7fc;
+      color: #0b1a2e;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    :root {
+      --navy: #0b2b5c;
+      --navy-light: #1a3f73;
+      --orange: #f28c28;
+      --orange-dark: #d97a1a;
+      --white: #ffffff;
+      --off-white: #f0f4fa;
+      --shadow: 0 16px 40px rgba(0, 20, 40, 0.10);
+      --header-height: 68px;
+    }
+    h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; font-weight: 600; letter-spacing: -0.02em; }
+    .wrap { max-width: 1280px; margin: 0 auto; padding: 0 16px; }
+
+    @media (min-width: 768px) {
+      .wrap { padding: 0 28px; }
+      :root { --header-height: 74px; }
+    }
+
+    /* HEADER - Mobile First */
+    header.site {
+      background: var(--navy);
+      color: white;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+      height: var(--header-height);
+    }
+    .nav-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: var(--header-height);
+      gap: 8px;
+      padding: 0 12px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .logo-mark {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 3px;
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+    }
+    @media (min-width: 480px) {
+      .logo-mark { width: 32px; height: 32px; gap: 4px; }
+    }
+    .logo-mark span { background: rgba(255,255,255,0.2); border-radius: 2px; }
+    .logo-mark span:nth-child(1) { background: var(--orange); }
+    .logo-text { line-height: 1.1; }
+    .logo-text b { font-size: 14px; font-weight: 700; }
+    .logo-text small { display: block; font-size: 8px; letter-spacing: 0.08em; color: var(--orange); font-weight: 500; }
+    @media (min-width: 480px) {
+      .logo-text b { font-size: 17px; }
+      .logo-text small { font-size: 9px; }
+    }
+    @media (min-width: 768px) {
+      .logo-text b { font-size: 18px; }
+      .logo-text small { font-size: 10px; }
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    nav.main-links {
+      display: none;
+      align-items: center;
+      gap: 16px;
+    }
+    @media (min-width: 860px) {
+      nav.main-links { display: flex; gap: 24px; }
+      .nav-right { gap: 20px; }
+    }
+    @media (min-width: 1024px) {
+      nav.main-links { gap: 32px; }
+      .nav-right { gap: 28px; }
+    }
+    nav.main-links a {
+      color: rgba(255,255,255,0.8);
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+      transition: 0.2s;
+      white-space: nowrap;
+    }
+    @media (min-width: 1024px) {
+      nav.main-links a { font-size: 14px; }
+    }
+    nav.main-links a:hover,
+    nav.main-links a.active {
+      color: white;
+      border-bottom-color: var(--orange);
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 12px;
+      border: none;
+      transition: 0.2s;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    @media (min-width: 480px) {
+      .btn { padding: 8px 18px; font-size: 13px; }
+    }
+    @media (min-width: 768px) {
+      .btn { padding: 10px 24px; font-size: 14px; }
+    }
+    .btn-orange { background: var(--orange); color: #0b1a2e; }
+    .btn-orange:hover { background: var(--orange-dark); color: white; }
+    .btn-outline-light { background: transparent; border: 1.5px solid rgba(255,255,255,0.3); color: white; }
+    .btn-outline-light:hover { border-color: white; background: rgba(255,255,255,0.06); }
+    .mobile-toggle {
+      display: block;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 22px;
+      cursor: pointer;
+      padding: 4px;
+      line-height: 1;
+    }
+    @media (min-width: 860px) {
+      .mobile-toggle { display: none; }
+    }
+
+    /* MOBILE MENU OVERLAY */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: var(--header-height);
+      left: 0;
+      width: 100%;
+      background: var(--navy);
+      padding: 20px 24px 30px;
+      z-index: 999;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      flex-direction: column;
+      gap: 16px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: rgba(255,255,255,0.85);
+      font-size: 16px;
+      font-weight: 500;
+      text-decoration: none;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      transition: 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--orange); }
+    .mobile-menu .btn { width: 100%; justify-content: center; margin-top: 8px; }
+
+    /* FULL HERO */
+    .hero-full {
+      min-height: 100vh;
+      height: 100dvh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      background: url('https://ik.imagekit.io/vmdskv7kj/ChatGPT%20Image%20Sep%205,%202026,%2008_31_02%20PM.png') no-repeat center center / cover;
+      background-attachment: fixed;
+      padding-top: var(--header-height);
+    }
+    @media (max-width: 768px) {
+      .hero-full { background-attachment: scroll; }
+    }
+    .hero-full::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(11, 27, 46, 0.55);
+      z-index: 1;
+    }
+    .hero-full .wrap {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding: 20px 16px 80px;
+    }
+    @media (min-width: 768px) {
+      .hero-full .wrap { padding: 20px 28px 100px; }
+    }
+    .hero-content {
+      max-width: 100%;
+      color: white;
+    }
+    @media (min-width: 768px) {
+      .hero-content { max-width: 700px; }
+    }
+    .hero-content .hero-eyebrow {
+      display: inline-block;
+      background: rgba(242, 140, 40, 0.25);
+      padding: 4px 14px;
+      border-radius: 40px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: #fce3c5;
+      backdrop-filter: blur(4px);
+      margin-bottom: 14px;
+    }
+    @media (min-width: 480px) {
+      .hero-content .hero-eyebrow { font-size: 12px; padding: 5px 18px; }
+    }
+    @media (min-width: 768px) {
+      .hero-content .hero-eyebrow { font-size: 13px; padding: 6px 20px; margin-bottom: 20px; }
+    }
+    .hero-content h1 {
+      font-size: clamp(32px, 10vw, 72px);
+      line-height: 1.05;
+      margin-bottom: 14px;
+      color: white;
+    }
+    @media (min-width: 480px) {
+      .hero-content h1 { font-size: clamp(38px, 12vw, 60px); }
+    }
+    .hero-content .lede {
+      font-size: clamp(15px, 4vw, 18px);
+      line-height: 1.6;
+      color: rgba(255,255,255,0.85);
+      max-width: 100%;
+      margin-bottom: 24px;
+    }
+    @media (min-width: 768px) {
+      .hero-content .lede { max-width: 50ch; margin-bottom: 32px; }
+    }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-ctas .btn { font-size: clamp(12px, 3vw, 14px); padding: 10px 18px; }
+    @media (min-width: 480px) {
+      .hero-ctas .btn { padding: 10px 22px; }
+    }
+    .hero-fine { margin-top: 20px; font-size: clamp(12px, 2.5vw, 14px); color: rgba(255,255,255,0.6); }
+
+    /* SCROLL DOWN BUTTON */
+    .scroll-down {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.6);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      animation: bounce 2s infinite;
+      transition: color 0.3s;
+      cursor: pointer;
+    }
+    @media (min-width: 480px) {
+      .scroll-down { bottom: 28px; font-size: 11px; gap: 8px; }
+    }
+    @media (min-width: 768px) {
+      .scroll-down { bottom: 40px; font-size: 12px; }
+    }
+    .scroll-down:hover { color: white; }
+    .scroll-down .arrow {
+      width: 28px;
+      height: 28px;
+      border: 2px solid rgba(255,255,255,0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    @media (min-width: 480px) {
+      .scroll-down .arrow { width: 32px; height: 32px; }
+    }
+    .scroll-down:hover .arrow {
+      border-color: var(--orange);
+      background: rgba(242, 140, 40, 0.15);
+    }
+    .scroll-down .arrow svg {
+      width: 14px;
+      height: 14px;
+      stroke: rgba(255,255,255,0.6);
+      transition: stroke 0.3s;
+    }
+    @media (min-width: 480px) {
+      .scroll-down .arrow svg { width: 16px; height: 16px; }
+    }
+    .scroll-down:hover .arrow svg { stroke: var(--orange); }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+      40% { transform: translateX(-50%) translateY(-10px); }
+      60% { transform: translateX(-50%) translateY(-5px); }
+    }
+
+    /* SECTION LABEL */
+    .section-head {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 30px;
+    }
+    @media (min-width: 640px) {
+      .section-head { flex-direction: row; align-items: baseline; gap: 18px; margin-bottom: 40px; }
+    }
+    .section-head .idx {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 12px;
+      color: var(--navy);
+      border-left: 3px solid var(--orange);
+      padding-left: 10px;
+      background: rgba(11,43,92,0.05);
+      padding: 4px 12px;
+      border-radius: 30px;
+      align-self: flex-start;
+    }
+    @media (min-width: 480px) {
+      .section-head .idx { font-size: 13px; padding: 6px 14px; }
+    }
+    .section-head h2 { font-size: clamp(24px, 7vw, 40px); }
+    .section-head p { color: #2f4055; margin-top: 4px; max-width: 100%; font-size: 14px; }
+    @media (min-width: 768px) {
+      .section-head p { max-width: 60ch; font-size: 15px; }
+    }
+
+    /* SERVICES - Mobile First */
+    .services {
+      padding: 60px 0;
+      background: var(--white);
+    }
+    @media (min-width: 768px) { .services { padding: 90px 0; } }
+    .service-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    @media (min-width: 560px) { .service-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; } }
+    @media (min-width: 1000px) { .service-grid { grid-template-columns: repeat(4, 1fr); gap: 28px; } }
+    .service-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(0,0,0,0.04);
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    @media (min-width: 768px) { .service-card { border-radius: 20px; } }
+    .service-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,20,40,0.12); }
+    .service-card .thumb {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      background: #eef3f9;
+      flex-shrink: 0;
+    }
+    .service-card .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .service-card .body {
+      padding: 18px 18px 22px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    @media (min-width: 480px) {
+      .service-card .body { padding: 20px 20px 24px; }
+    }
+    @media (min-width: 768px) {
+      .service-card .body { padding: 24px 22px 28px; }
+    }
+    .service-card .body h3 {
+      font-size: clamp(16px, 4vw, 18px);
+      margin-bottom: 6px;
+      min-height: auto;
+    }
+    @media (min-width: 768px) {
+      .service-card .body h3 { min-height: 2.4em; margin-bottom: 8px; }
+    }
+    .service-card .body p {
+      color: #3a4a5e;
+      font-size: clamp(13px, 3vw, 14px);
+      line-height: 1.6;
+      flex: 1;
+      margin-bottom: 12px;
+    }
+    .service-card .learn {
+      display: inline-block;
+      font-weight: 600;
+      color: var(--navy);
+      border-bottom: 2px solid var(--orange);
+      padding-bottom: 2px;
+      text-decoration: none;
+      align-self: flex-start;
+      margin-top: auto;
+      font-size: 13px;
+    }
+    @media (min-width: 768px) {
+      .service-card .learn { font-size: 14px; }
+    }
+
+    /* WHY */
+    .why {
+      padding: 60px 0;
+      background: var(--off-white);
+    }
+    @media (min-width: 768px) { .why { padding: 90px 0; } }
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+    @media (min-width: 860px) { .why-grid { grid-template-columns: 1fr 1fr; gap: 60px; } }
+    .why-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    @media (min-width: 480px) { .why-gallery { gap: 12px; } }
+    .why-gallery .gallery-item {
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 1/1;
+      background: #dce3ed;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      transform: scale(0.95);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    @media (min-width: 768px) { .why-gallery .gallery-item { border-radius: 16px; } }
+    .why-gallery .gallery-item.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .why-gallery .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.3s;
+    }
+    .why-gallery .gallery-item:hover img { transform: scale(1.04); }
+    .why-gallery .gallery-item:first-child { grid-column: span 2; aspect-ratio: 2/1; }
+
+    .why-item {
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      gap: 12px;
+      padding: 14px 0;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    @media (min-width: 480px) {
+      .why-item { grid-template-columns: 28px 1fr; gap: 16px; padding: 18px 0; }
+    }
+    .why-item.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .why-item:last-child { border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .why-item .check { color: var(--orange); font-size: 18px; }
+    @media (min-width: 480px) { .why-item .check { font-size: 20px; } }
+    .why-item h4 { font-size: clamp(15px, 4vw, 17px); margin-bottom: 3px; }
+    .why-item p { color: #3d4e62; font-size: clamp(13px, 3vw, 14px); line-height: 1.5; }
+
+    /* PROCESS */
+    .process {
+      padding: 60px 0;
+      background: var(--white);
+    }
+    @media (min-width: 768px) { .process { padding: 90px 0; } }
+    .process-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    @media (min-width: 480px) { .process-row { gap: 20px; } }
+    @media (min-width: 820px) { .process-row { grid-template-columns: repeat(4, 1fr); gap: 20px; } }
+    .process-step {
+      background: var(--off-white);
+      padding: 24px 18px;
+      border-radius: 16px;
+      border: 1px solid rgba(0,0,0,0.04);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    @media (min-width: 480px) {
+      .process-step { padding: 28px 20px; }
+    }
+    @media (min-width: 768px) {
+      .process-step { padding: 32px 24px; border-radius: 20px; }
+    }
+    .process-step.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .step-num {
+      width: 40px;
+      height: 40px;
+      background: var(--navy);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 17px;
+      border-radius: 10px;
+      margin-bottom: 14px;
+    }
+    @media (min-width: 480px) {
+      .step-num { width: 46px; height: 46px; font-size: 19px; }
+    }
+    @media (min-width: 768px) {
+      .step-num { width: 50px; height: 50px; font-size: 20px; border-radius: 12px; margin-bottom: 18px; }
+    }
+    .process-step:nth-child(4) .step-num { background: var(--orange); color: #0b1a2e; }
+    .process-step h4 { font-size: clamp(16px, 4vw, 18px); margin-bottom: 6px; }
+    .process-step p { color: #3f5166; font-size: clamp(13px, 3vw, 14px); line-height: 1.6; }
+
+    /* PROJECTS */
+    .projects {
+      padding: 60px 0;
+      background: var(--off-white);
+    }
+    @media (min-width: 768px) { .projects { padding: 90px 0; } }
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (min-width: 480px) { .project-grid { gap: 20px; } }
+    @media (min-width: 768px) { .project-grid { gap: 24px; } }
+    @media (min-width: 1000px) { .project-grid { grid-template-columns: repeat(4, 1fr); } }
+    .project-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: 0.3s;
+      opacity: 0;
+      transform: scale(0.96);
+      transition: opacity 0.7s ease, transform 0.7s ease, box-shadow 0.3s;
+    }
+    @media (min-width: 768px) { .project-card { border-radius: 20px; } }
+    .project-card.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .project-card:hover { transform: scale(1.02); box-shadow: 0 20px 40px rgba(0,20,40,0.12); }
+    .project-card .thumb {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      background: #cfdae8;
+    }
+    .project-card .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .project-card .meta { padding: 12px 14px 16px; }
+    @media (min-width: 480px) {
+      .project-card .meta { padding: 14px 16px 18px; }
+    }
+    @media (min-width: 768px) {
+      .project-card .meta { padding: 16px 18px 20px; }
+    }
+    .project-card h4 { font-size: clamp(14px, 3.5vw, 16px); }
+    .project-card span { color: #5b6e84; font-size: clamp(11px, 2.5vw, 13px); display: block; }
+    .project-card .kw { color: var(--navy); font-weight: 700; font-size: clamp(11px, 2.5vw, 13px); margin-top: 3px; }
+
+    /* TESTIMONIALS + FORM */
+    .bottom-split {
+      display: grid;
+      grid-template-columns: 1fr;
+      background: var(--white);
+    }
+    @media (min-width: 880px) { .bottom-split { grid-template-columns: 1fr 1fr; } }
+    .testimonials {
+      padding: 40px 20px;
+      background: var(--off-white);
+    }
+    @media (min-width: 480px) {
+      .testimonials { padding: 50px 30px; }
+    }
+    @media (min-width: 768px) {
+      .testimonials { padding: 80px 40px 80px 60px; }
+    }
+    .testi-card {
+      padding: 18px 0;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    @media (min-width: 768px) { .testi-card { padding: 24px 0; } }
+    .testi-card.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .testi-card:last-child { border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .testi-card .quote { font-size: clamp(15px, 4vw, 17px); line-height: 1.6; color: #0b1a2e; }
+    .testi-foot {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    @media (min-width: 768px) { .testi-foot { gap: 14px; margin-top: 16px; } }
+    .avatar {
+      width: 36px;
+      height: 36px;
+      background: var(--navy);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+    @media (min-width: 480px) {
+      .avatar { width: 40px; height: 40px; font-size: 13px; }
+    }
+    @media (min-width: 768px) {
+      .avatar { width: 44px; height: 44px; font-size: 14px; }
+    }
+
+    /* FORM */
+    .quote-form {
+      background: var(--navy);
+      padding: 40px 20px;
+      color: white;
+    }
+    @media (min-width: 480px) {
+      .quote-form { padding: 50px 30px; }
+    }
+    @media (min-width: 768px) {
+      .quote-form { padding: 80px 50px; }
+    }
+    .quote-form h2 { color: white; font-size: clamp(24px, 7vw, 32px); }
+    .quote-form .lede { color: rgba(255,255,255,0.75); margin: 10px 0 20px; font-size: clamp(14px, 3.5vw, 15px); max-width: 100%; }
+    @media (min-width: 768px) {
+      .quote-form .lede { max-width: 40ch; margin: 12px 0 28px; }
+    }
+    .qform { display: grid; gap: 14px; }
+    @media (min-width: 768px) { .qform { gap: 18px; } }
+    .qform .row2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    @media (min-width: 520px) { .qform .row2 { grid-template-columns: 1fr 1fr; gap: 16px; } }
+    .qform label { font-size: 11px; font-weight: 600; display: block; margin-bottom: 3px; color: rgba(255,255,255,0.7); }
+    @media (min-width: 768px) { .qform label { font-size: 12px; margin-bottom: 4px; } }
+    .qform input, .qform select, .qform textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.08);
+      color: white;
+      font-size: clamp(13px, 3.5vw, 14px);
+      font-family: 'Inter', sans-serif;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    @media (min-width: 768px) {
+      .qform input, .qform select, .qform textarea { padding: 12px 14px; }
+    }
+    .qform select option { background: #0b2b5c; color: white; }
+    .qform input::placeholder, .qform textarea::placeholder { color: rgba(255,255,255,0.4); }
+    .qform input:focus, .qform select:focus, .qform textarea:focus {
+      outline: none;
+      border-color: var(--orange);
+      background: rgba(255,255,255,0.15);
+    }
+    .qform textarea { resize: vertical; min-height: 70px; }
+    @media (min-width: 768px) { .qform textarea { min-height: 80px; } }
+    .qform button {
+      background: var(--orange);
+      color: #0b1a2e;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: clamp(14px, 3.5vw, 16px);
+      transition: 0.2s;
+      cursor: pointer;
+    }
+    @media (min-width: 768px) { .qform button { padding: 14px; } }
+    .qform button:hover { background: var(--orange-dark); color: white; }
+    .qform .fine { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 4px; }
+    @media (min-width: 768px) { .qform .fine { font-size: 12px; } }
+
+    /* FOOTER */
+    footer.site {
+      background: #081a30;
+      color: rgba(255,255,255,0.65);
+      padding: 40px 0 16px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    @media (min-width: 768px) { footer.site { padding: 60px 0 20px; } }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    @media (min-width: 560px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 820px) { .footer-grid { grid-template-columns: 1.5fr 0.8fr 0.8fr 0.9fr; gap: 40px; padding-bottom: 40px; } }
+    .footer-grid .logo-text { color: white; }
+    .footer-grid .logo-text b { color: white; }
+    .footer-col h5 { color: white; font-size: clamp(13px, 3vw, 14px); font-weight: 600; margin-bottom: 14px; }
+    @media (min-width: 768px) { .footer-col h5 { margin-bottom: 18px; } }
+    .footer-col a { display: block; font-size: clamp(13px, 3vw, 14px); color: rgba(255,255,255,0.55); margin-bottom: 10px; text-decoration: none; }
+    @media (min-width: 768px) { .footer-col a { margin-bottom: 12px; } }
+    .footer-col a:hover { color: var(--orange); }
+    .footer-about p { font-size: clamp(13px, 3vw, 14px); line-height: 1.7; margin-top: 10px; max-width: 100%; }
+    @media (min-width: 768px) { .footer-about p { max-width: 32ch; margin-top: 12px; } }
+    .social-row { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+    @media (min-width: 768px) { .social-row { gap: 12px; margin-top: 18px; } }
+    .social-row a {
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.2s;
+      text-decoration: none;
+    }
+    @media (min-width: 480px) {
+      .social-row a { width: 38px; height: 38px; border-radius: 10px; }
+    }
+    .social-row a:hover { border-color: var(--orange); }
+
+    .footer-bottom {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding-top: 20px;
+      font-size: 11px;
+      text-align: center;
+    }
+    @media (min-width: 480px) {
+      .footer-bottom { flex-direction: row; justify-content: space-between; font-size: 12px; }
+    }
+    @media (min-width: 768px) { .footer-bottom { padding-top: 24px; } }
+
+    .footer-bottom .credit {
+      color: rgba(255,255,255,0.5);
+      font-size: 11px;
+      transition: color 0.3s;
+    }
+    @media (min-width: 480px) {
+      .footer-bottom .credit { font-size: 12px; }
+    }
+    .footer-bottom .credit a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+      border-bottom: 1px solid transparent;
+    }
+    .footer-bottom .credit a:hover {
+      color: var(--orange);
+      border-bottom-color: var(--orange);
+    }
+
+    /* FLOATING BUTTONS */
+    .float-btn {
+      position: fixed;
+      bottom: 16px;
+      z-index: 900;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      transition: 0.2s;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    @media (min-width: 480px) {
+      .float-btn { width: 50px; height: 50px; bottom: 22px; }
+    }
+    @media (min-width: 768px) {
+      .float-btn { width: 54px; height: 54px; bottom: 28px; }
+    }
+    .float-btn:hover { transform: scale(1.08); }
+    #backToTop {
+      left: 12px;
+      background: var(--navy);
+      color: white;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.25s;
+    }
+    @media (min-width: 480px) { #backToTop { left: 20px; } }
+    @media (min-width: 768px) { #backToTop { left: 28px; } }
+    #backToTop.show { opacity: 1; pointer-events: auto; }
+    #whatsappBtn {
+      right: 12px;
+      background: #25D366;
+      color: white;
+    }
+    @media (min-width: 480px) { #whatsappBtn { right: 20px; } }
+    @media (min-width: 768px) { #whatsappBtn { right: 28px; } }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site">
+  <div class="wrap nav-row">
+    <a href="#top" class="logo">
+      <span class="logo-mark"><span></span><span></span><span></span><span></span></span>
+      <span class="logo-text"><b>MASTER SOLAR</b><small>SOLUTIONS</small></span>
+    </a>
+    <div class="nav-right">
+      <nav class="main-links">
+        <a href="#top" class="active">Home</a>
+        <a href="#services">Services</a>
+        <a href="#why">Why Us</a>
+        <a href="#process">Process</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a href="#contact" class="btn btn-orange">Get a Quote</a>
+      <button class="mobile-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#top" class="active">Home</a>
+  <a href="#services">Services</a>
+  <a href="#why">Why Us</a>
+  <a href="#process">Process</a>
+  <a href="#projects">Projects</a>
+  <a href="#contact">Contact</a>
+  <a href="#contact" class="btn btn-orange" style="text-align:center;">Get a Quote</a>
+</div>
+
+<!-- HERO -->
+<section class="hero-full" id="top">
+  <div class="wrap">
+    <div class="hero-content">
+      <span class="hero-eyebrow">Residential &amp; commercial solar</span>
+      <h1>Solar, engineered<br />like it matters.</h1>
+      <p class="lede">We design, install, and stand behind solar systems built to outperform the estimate, not just meet it. Tier 1 equipment, in-house crews, no subcontractors.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn btn-orange">Get a system estimate</a>
+        <a href="#process" class="btn btn-outline-light">See how it works</a>
+      </div>
+      <p class="hero-fine">Free site assessment · No obligation · Call 0708 791 230 / 0705 033 603</p>
+    </div>
+  </div>
+  <a href="#services" class="scroll-down" aria-label="Scroll down for more">
+    <span>SCROLL</span>
+    <div class="arrow">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
+      </svg>
+    </div>
+  </a>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="idx">01 / Services</span>
+      <div><h2>Four ways we keep your power on</h2><p>Every job starts with a site assessment, not a catalog price.</p></div>
+    </div>
+    <div class="service-grid">
+      <div class="service-card">
+        <div class="thumb"><img src="https://images.pexels.com/photos/9875447/pexels-photo-9875447.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Installation" /></div>
+        <div class="body">
+          <h3>Solar Installation</h3>
+          <p>Rooftop PV systems sized to your actual usage. Panel layout, wiring, and mounting engineered for your roof.</p>
+          <a href="#contact" class="learn">Get an estimate →</a>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="thumb"><img src="https://images.pexels.com/photos/17842843/pexels-photo-17842843/free-photo-of-a-man-maintaining-an-inverter.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Inverter" /></div>
+        <div class="body">
+          <h3>Batteries &amp; Inverters / CCTV</h3>
+          <p>Backup power, inverter servicing, and CCTV camera installation for the same property.</p>
+          <a href="#contact" class="learn">Compare options →</a>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="thumb" style="background:#fce3c5; display:flex; align-items:center; justify-content:center; font-size:clamp(36px, 10vw, 48px);">☀️</div>
+        <div class="body">
+          <h3>Solar Water Heaters</h3>
+          <p>Rooftop solar geysers sized to household or business demand. Cuts water heating costs.</p>
+          <a href="#contact" class="learn">Ask about sizing →</a>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="thumb"><img src="https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Electrical" /></div>
+        <div class="body">
+          <h3>Electrical Diagnosis</h3>
+          <p>Faults, tripping breakers, wiring inspections. Diagnosed and fixed by certified electricians.</p>
+          <a href="#contact" class="learn">Book a diagnosis →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" id="why">
+  <div class="wrap why-grid">
+    <div class="why-gallery">
+      <div class="gallery-item"><img src="https://images.pexels.com/photos/7102661/pexels-photo-7102661.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Solar cells" /></div>
+      <div class="gallery-item"><img src="https://images.pexels.com/photos/27863809/pexels-photo-27863809/free-photo-of-a-roof-with-solar-panels-on-it.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Roof" /></div>
+      <div class="gallery-item"><img src="https://images.pexels.com/photos/17965455/pexels-photo-17965455/free-photo-of-close-up-of-solar-panels-on-a-roof-of-a-house.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Closeup" /></div>
+    </div>
+    <div>
+      <div class="section-head" style="margin-bottom:20px;">
+        <span class="idx">02 / Standards</span>
+        <div><h2>Why homeowners choose us</h2></div>
+      </div>
+      <div class="why-list">
+        <div class="why-item"><span class="check">✔</span><div><h4>Tier 1 panels only</h4><p>Every panel comes from a manufacturer on the Bloomberg Tier 1 list.</p></div></div>
+        <div class="why-item"><span class="check">✔</span><div><h4>In-house certified installers</h4><p>No subcontracted crews. Design and install by the same team.</p></div></div>
+        <div class="why-item"><span class="check">✔</span><div><h4>25 year workmanship warranty</h4><p>Covers our installation, not just the hardware.</p></div></div>
+        <div class="why-item"><span class="check">✔</span><div><h4>0% financing available</h4><p>Qualified homeowners can finance over terms up to 20 years.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="idx">03 / Process</span>
+      <div><h2>From first call to first kilowatt</h2><p>Four stages, always in this order. Nothing gets installed until you approve the design.</p></div>
+    </div>
+    <div class="process-row">
+      <div class="process-step"><div class="step-num">1</div><h4>Consultation</h4><p>We assess your roof, shading, and utility bill to size a system that pays for itself.</p></div>
+      <div class="process-step"><div class="step-num">2</div><h4>Design</h4><p>Engineered layout and permit ready drawings, reviewed with you before anything is ordered.</p></div>
+      <div class="process-step"><div class="step-num">3</div><h4>Installation</h4><p>Certified crews complete most residential installs in one to two days.</p></div>
+      <div class="process-step"><div class="step-num">4</div><h4>Activation</h4><p>Utility interconnection, inspection, and commissioning. Then your system starts generating.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects" id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="idx">04 / Projects</span>
+      <div><h2>Recent installs</h2><p>A sample of residential and commercial systems completed in the last year.</p></div>
+    </div>
+    <div class="project-grid">
+      <div class="project-card"><div class="thumb"><img src="https://images.pexels.com/photos/27863809/pexels-photo-27863809/free-photo-of-a-roof-with-solar-panels-on-it.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Residence" /></div><div class="meta"><h4>Cedar Ridge Residence</h4><span>Single family rooftop</span><span class="kw">8.4 kW system</span></div></div>
+      <div class="project-card"><div class="thumb"><img src="https://images.pexels.com/photos/17965455/pexels-photo-17965455/free-photo-of-close-up-of-solar-panels-on-a-roof-of-a-house.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Signal Hill" /></div><div class="meta"><h4>Signal Hill Home</h4><span>Two story rooftop</span><span class="kw">6.2 kW system</span></div></div>
+      <div class="project-card"><div class="thumb"><img src="https://images.pexels.com/photos/35501734/pexels-photo-35501734/free-photo-of-aerial-view-of-solar-panel-rows-in-a-grid-pattern.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Warehouse" /></div><div class="meta"><h4>Northgate Distribution</h4><span>Warehouse rooftop array</span><span class="kw">240 kW system</span></div></div>
+      <div class="project-card"><div class="thumb"><img src="https://images.pexels.com/photos/12606669/pexels-photo-12606669.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Logistics" /></div><div class="meta"><h4>Riverbend Logistics Park</h4><span>Industrial rooftop array</span><span class="kw">180 kW system</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS + FORM -->
+<div class="bottom-split" id="contact">
+  <section class="testimonials">
+    <div style="max-width:100%;">
+      <div class="section-head" style="margin-bottom:10px;">
+        <span class="idx">05 / Reviews</span>
+        <div><h2>What it's like to work with us</h2></div>
+      </div>
+      <div class="testi-card">
+        <p class="quote">"Master Solar had a system live in less time than it took our bank to approve the loan. Production has matched their estimate to the kilowatt hour."</p>
+        <div class="testi-foot"><div class="avatar">DO</div><div><b>D. Osei</b><span style="color:#4a5b6e; font-size:13px;">Homeowner, Cedar Ridge</span></div></div>
+      </div>
+      <div class="testi-card">
+        <p class="quote">"We compared four bids for our warehouse roof. Master Solar was the only one that showed us a shading analysis before quoting a number."</p>
+        <div class="testi-foot"><div class="avatar">LF</div><div><b>L. Fenwick</b><span style="color:#4a5b6e; font-size:13px;">Facilities Manager, Northgate</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="quote-form">
+    <h2>Get your free estimate</h2>
+    <p class="lede">Tell us about your property. We'll follow up within two business days.</p>
+    <form class="qform" onsubmit="alert('Thank you! We will contact you shortly.'); return false;">
+      <div class="row2">
+        <div><label for="fullname">Full name</label><input id="fullname" type="text" placeholder="Jane Mwangi" required /></div>
+        <div><label for="email">Email</label><input id="email" type="email" placeholder="jane@email.com" required /></div>
+      </div>
+      <div>
+        <label for="service-select">Service you're interested in</label>
+        <select id="service-select" required>
+          <option value="">Select a service…</option>
+          <option value="solar-installation">Solar Installation</option>
+          <option value="batteries-inverters">Batteries &amp; Inverters / CCTV</option>
+          <option value="solar-water-heaters">Solar Water Heaters</option>
+          <option value="electrical-diagnosis">Electrical Diagnosis</option>
+          <option value="other">Other / Not sure</option>
+        </select>
+      </div>
+      <div>
+        <label for="message">Message (optional)</label>
+        <textarea id="message" placeholder="Tell us about your property, roof type, or any specific needs…"></textarea>
+      </div>
+      <button type="submit">Get my estimate</button>
+      <p class="fine">Or call us directly on 0708 791 230 / 0705 033 603.</p>
+    </form>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer class="site">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <a href="#top" class="logo"><span class="logo-mark"><span></span><span></span><span></span><span></span></span><span class="logo-text"><b>MASTER SOLAR</b><small>SOLUTIONS</small></span></a>
+        <p>Solar installation, batteries and inverters, CCTV, solar water heaters, and electrical diagnosis. One call for the whole roof.</p>
+        <div class="social-row">
+          <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="white"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="8" y1="10" x2="8" y2="17"/><circle cx="8" cy="6.5" r="0.6" fill="white"/><path d="M12 17V12.5C12 11 13.2 10 14.5 10C15.8 10 16.5 11 16.5 12.5V17"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6"><path d="M15 8h2V4h-2c-2.2 0-4 1.8-4 4v2H9v4h2v8h4v-8h2.5l.5-4H15V8z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col"><h5>Company</h5><a href="#top">Home</a><a href="#why">Why us</a><a href="#projects">Projects</a><a href="#contact">Contact</a></div>
+      <div class="footer-col"><h5>Services</h5><a href="#services">Solar installation</a><a href="#services">Batteries and inverters</a><a href="#services">Solar water heaters</a><a href="#services">Electrical diagnosis</a></div>
+      <div class="footer-col"><h5>Contact</h5><a href="tel:+254708791230">0708 791 230</a><a href="tel:+254705033603">0705 033 603</a><a href="#">Nairobi, Kenya</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Master Solar Solutions. All rights reserved.</span>
+      <span class="credit">Made by <a href="https://hackathonde.github.io/David-Wakaba-CV/" target="_blank" rel="noopener">Bluelink Solutions</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING BUTTONS -->
+<a href="#top" id="backToTop" class="float-btn" aria-label="Back to top"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3.5 8.5L9 3L14.5 8.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+<a href="https://wa.me/254708791230" id="whatsappBtn" class="float-btn" aria-label="WhatsApp" target="_blank" rel="noopener"><svg width="24" height="24" viewBox="0 0 32 32" fill="white"><path d="M16 3C9 3 3.3 8.6 3.3 15.5c0 2.4.7 4.7 1.9 6.7L3 29l7-1.9c1.9 1.1 4 1.6 6 1.6 7 0 12.7-5.6 12.7-12.5C28.7 8.6 23 3 16 3zm0 22.7c-1.8 0-3.6-.5-5.2-1.4l-.4-.2-4.2 1.1 1.1-4.1-.2-.4a10.9 10.9 0 0 1-1.7-5.8C5.4 9.8 10.1 5.2 16 5.2S26.6 9.8 26.6 15.5 21.9 25.7 16 25.7z"/><path d="M21.4 18.3c-.3-.1-1.8-.9-2.1-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.3 0-.5s-.7-1.6-.9-2.2c-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.3-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.1.2 2.2 3.3 5.3 4.6.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4z"/></svg></a>
+
+<script>
+  // Mobile menu toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  menuToggle.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+
+  // Close mobile menu on link click
+  document.querySelectorAll('.mobile-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+    });
+  });
+
+  // SCROLL ANIMATIONS
+  const animateElements = (selector, threshold = 0.15) => {
+    const elements = document.querySelectorAll(selector);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold, rootMargin: '0px 0px -40px 0px' });
+    elements.forEach(el => observer.observe(el));
+  };
+
+  animateElements('.service-card');
+  animateElements('.gallery-item');
+  animateElements('.why-item');
+  animateElements('.process-step');
+  animateElements('.project-card');
+  animateElements('.testi-card');
+
+  // Back to top
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    backToTop.classList.toggle('show', window.scrollY > 500);
+  });
+
+  // Active nav link
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.main-links a');
+  const mobileLinks = document.querySelectorAll('.mobile-menu a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const top = section.offsetTop - 120;
+      if (window.scrollY >= top) {
+        current = section.getAttribute('id');
+      }
+    });
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) {
+        link.classList.add('active');
+      }
+    });
+    mobileLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) {
+        link.classList.add('active');
+      }
+    });
+  });
+
+  // Smooth scroll for all anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return;
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        e.preventDefault();
+        const headerOffset = 74;
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+</script>
+</body>
+</html>
