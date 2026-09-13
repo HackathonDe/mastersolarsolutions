@@ -6,6 +6,8 @@
   <title>Master Solar | Solar, engineered like it matters</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://ik.imagekit.io" crossorigin />
+  <link rel="preload" as="image" href="https://ik.imagekit.io/vmdskv7kj/SOLAR/p.jpeg" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     /* RESET & BASE */
@@ -40,7 +42,7 @@
       :root { --header-height: 74px; }
     }
 
-    /* HEADER - Mobile First */
+    /* HEADER */
     header.site {
       background: var(--navy);
       color: white;
@@ -197,27 +199,78 @@
     .mobile-menu a:hover { color: var(--orange); }
     .mobile-menu .btn { width: 100%; justify-content: center; margin-top: 8px; }
 
-    /* FULL HERO */
+    /* ============================================
+       FULL HERO + FIXED BACKGROUND SLIDESHOW
+       (Ken Burns zoom + crossfade, viewport-locked)
+       ============================================ */
     .hero-full {
       min-height: 100vh;
       height: 100dvh;
       display: flex;
       align-items: center;
       position: relative;
-      background: url('https://ik.imagekit.io/vmdskv7kj/ChatGPT%20Image%20Sep%205,%202026,%2008_31_02%20PM.png') no-repeat center center / cover;
-      background-attachment: fixed;
+      overflow: hidden;
+      background: transparent;
       padding-top: var(--header-height);
     }
-    @media (max-width: 768px) {
-      .hero-full { background-attachment: scroll; }
+
+    /*
+      The slideshow is position:fixed so it never scrolls with the page.
+      z-index:-1 places it behind all page content, so the white sections
+      below the hero naturally slide over it as you scroll.
+    */
+    .hero-slides {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+      background: #0b1b2e;
     }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transform: scale(1.18);
+      animation: heroKenBurns 21s linear infinite;
+      will-change: opacity, transform;
+      backface-visibility: hidden;
+    }
+    /* 3 slides x 7s each = 21s loop */
+    .hero-slide:nth-child(1) { animation-delay: 0s; }
+    .hero-slide:nth-child(2) { animation-delay: 7s; }
+    .hero-slide:nth-child(3) { animation-delay: 14s; }
+
+    /*
+      Slow, continuous zoom (Ken Burns) that keeps the image in motion
+      the whole time it is on screen, then crossfades to the next slide.
+    */
+    @keyframes heroKenBurns {
+      0%   { opacity: 0; transform: scale(1.18) translate3d(0, 0, 0); }
+      4%   { opacity: 1; transform: scale(1.15) translate3d(0, 0, 0); }
+      33%  { opacity: 1; transform: scale(1.00) translate3d(0, 0, 0); }
+      38%  { opacity: 0; transform: scale(1.00) translate3d(0, 0, 0); }
+      100% { opacity: 0; transform: scale(1.18) translate3d(0, 0, 0); }
+    }
+
+    /* Overlay for text legibility (mobile + desktop) */
     .hero-full::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(11, 27, 46, 0.55);
       z-index: 1;
+      background:
+        linear-gradient(90deg, rgba(9,22,38,0.86) 0%, rgba(9,22,38,0.55) 55%, rgba(9,22,38,0.38) 100%),
+        linear-gradient(180deg, rgba(9,22,38,0.30) 0%, rgba(9,22,38,0.55) 100%);
     }
+
     .hero-full .wrap {
       position: relative;
       z-index: 2;
@@ -277,6 +330,12 @@
       .hero-ctas .btn { padding: 10px 22px; }
     }
     .hero-fine { margin-top: 20px; font-size: clamp(12px, 2.5vw, 14px); color: rgba(255,255,255,0.6); }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .hero-slide { animation: none; transform: none; }
+      .hero-slide:first-child { opacity: 1; }
+    }
 
     /* SCROLL DOWN BUTTON */
     .scroll-down {
@@ -370,10 +429,12 @@
       .section-head p { max-width: 60ch; font-size: 15px; }
     }
 
-    /* SERVICES - Mobile First */
+    /* SERVICES */
     .services {
       padding: 60px 0;
       background: var(--white);
+      position: relative;
+      z-index: 2;
     }
     @media (min-width: 768px) { .services { padding: 90px 0; } }
     .service-grid {
@@ -411,6 +472,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
     }
     .service-card .body {
       padding: 18px 18px 22px;
@@ -458,6 +520,8 @@
     .why {
       padding: 60px 0;
       background: var(--off-white);
+      position: relative;
+      z-index: 2;
     }
     @media (min-width: 768px) { .why { padding: 90px 0; } }
     .why-grid {
@@ -492,6 +556,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
       transition: 0.3s;
     }
     .why-gallery .gallery-item:hover img { transform: scale(1.04); }
@@ -524,6 +589,8 @@
     .process {
       padding: 60px 0;
       background: var(--white);
+      position: relative;
+      z-index: 2;
     }
     @media (min-width: 768px) { .process { padding: 90px 0; } }
     .process-row {
@@ -579,6 +646,8 @@
     .projects {
       padding: 60px 0;
       background: var(--off-white);
+      position: relative;
+      z-index: 2;
     }
     @media (min-width: 768px) { .projects { padding: 90px 0; } }
     .project-grid {
@@ -594,7 +663,6 @@
       border-radius: 16px;
       overflow: hidden;
       box-shadow: var(--shadow);
-      transition: 0.3s;
       opacity: 0;
       transform: scale(0.96);
       transition: opacity 0.7s ease, transform 0.7s ease, box-shadow 0.3s;
@@ -614,6 +682,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
     }
     .project-card .meta { padding: 12px 14px 16px; }
     @media (min-width: 480px) {
@@ -631,6 +700,8 @@
       display: grid;
       grid-template-columns: 1fr;
       background: var(--white);
+      position: relative;
+      z-index: 2;
     }
     @media (min-width: 880px) { .bottom-split { grid-template-columns: 1fr 1fr; } }
     .testimonials {
@@ -757,6 +828,8 @@
       color: rgba(255,255,255,0.65);
       padding: 40px 0 16px;
       border-top: 1px solid rgba(255,255,255,0.06);
+      position: relative;
+      z-index: 2;
     }
     @media (min-width: 768px) { footer.site { padding: 60px 0 20px; } }
     .footer-grid {
@@ -871,6 +944,221 @@
     }
     @media (min-width: 480px) { #whatsappBtn { right: 20px; } }
     @media (min-width: 768px) { #whatsappBtn { right: 28px; } }
+
+    /* ============================================
+       MOBILE REFINEMENTS (≤ 767px)
+       ============================================ */
+    @media (max-width: 767px) {
+
+      /* Comfortable tap targets everywhere */
+      .btn {
+        min-height: 44px;
+        padding: 11px 20px;
+        font-size: 14px;
+        border-radius: 8px;
+      }
+      header.site .btn.btn-orange {
+        min-height: 40px;
+        padding: 8px 16px;
+        font-size: 13px;
+      }
+
+      /* Hero breathing room */
+      .hero-full {
+        height: 100vh;
+        height: 100svh;
+        height: 100dvh;
+      }
+      .hero-full .wrap {
+        padding: 24px 18px 100px;
+      }
+      .hero-content h1 {
+        font-size: clamp(34px, 11vw, 52px);
+        line-height: 1.08;
+        margin-bottom: 12px;
+      }
+      .hero-content .lede {
+        font-size: 15px;
+        line-height: 1.55;
+        margin-bottom: 22px;
+      }
+      .hero-content .hero-eyebrow {
+        font-size: 11px;
+        padding: 5px 14px;
+        margin-bottom: 12px;
+      }
+      .hero-ctas {
+        gap: 10px;
+        width: 100%;
+      }
+      .hero-ctas .btn {
+        flex: 1 1 100%;
+        min-width: 0;
+        padding: 13px 18px;
+      }
+      .hero-fine {
+        margin-top: 16px;
+        font-size: 12px;
+        line-height: 1.5;
+      }
+
+      /* Scroll cue sits lower, smaller, never crowds content */
+      .scroll-down {
+        bottom: 14px;
+        font-size: 9px;
+        gap: 5px;
+      }
+      .scroll-down .arrow {
+        width: 26px;
+        height: 26px;
+      }
+      .scroll-down .arrow svg {
+        width: 12px;
+        height: 12px;
+      }
+
+      /* Mobile menu polish */
+      .mobile-menu {
+        padding: 14px 20px 26px;
+        max-height: calc(100dvh - var(--header-height));
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .mobile-menu a {
+        font-size: 15px;
+        padding: 13px 0;
+      }
+      .mobile-menu .btn {
+        min-height: 46px;
+        margin-top: 14px;
+        font-size: 15px;
+      }
+
+      /* Section spacing */
+      .services,
+      .why,
+      .process,
+      .projects {
+        padding: 48px 0;
+      }
+      .section-head {
+        margin-bottom: 22px;
+        gap: 6px;
+      }
+      .section-head h2 {
+        font-size: clamp(22px, 7.5vw, 30px);
+      }
+      .section-head p { font-size: 14px; }
+
+      /* Service cards */
+      .service-card { border-radius: 14px; }
+      .service-card .body {
+        padding: 16px 16px 20px;
+      }
+      .service-card .body h3 {
+        font-size: 17px;
+        min-height: 0;
+        margin-bottom: 6px;
+      }
+      .service-card .body p { font-size: 14px; }
+      .service-card .learn { font-size: 14px; }
+
+      /* Why */
+      .why-gallery { gap: 8px; }
+      .why-gallery .gallery-item { border-radius: 10px; }
+      .why-item { padding: 15px 0; gap: 12px; }
+      .why-item h4 { font-size: 16px; }
+      .why-item p { font-size: 14px; }
+
+      /* Process */
+      .process-row { gap: 12px; }
+      .process-step {
+        padding: 22px 18px;
+        border-radius: 14px;
+      }
+      .process-step h4 { font-size: 16px; }
+      .process-step p { font-size: 14px; }
+
+      /* Projects */
+      .project-grid { gap: 14px; }
+      .project-card { border-radius: 14px; }
+      .project-card .meta { padding: 12px 14px 14px; }
+      .project-card h4 { font-size: 14px; }
+      .project-card span,
+      .project-card .kw { font-size: 12px; }
+
+      /* Testimonials */
+      .testimonials { padding: 44px 20px 48px; }
+      .testi-card .quote { font-size: 15px; }
+      .testi-foot b { font-size: 14px; }
+
+      /* Form – prevent iOS auto-zoom + larger tap targets */
+      .quote-form {
+        padding: 44px 20px 50px;
+      }
+      .quote-form h2 { font-size: 24px; }
+      .quote-form .lede { font-size: 14px; margin-bottom: 22px; }
+      .qform { gap: 14px; }
+      .qform label {
+        font-size: 12px;
+        margin-bottom: 5px;
+      }
+      .qform input,
+      .qform select,
+      .qform textarea {
+        font-size: 16px;         /* stops iOS zoom-on-focus */
+        padding: 13px 14px;
+        border-radius: 10px;
+      }
+      .qform textarea { min-height: 96px; }
+      .qform button {
+        min-height: 52px;
+        padding: 14px;
+        font-size: 16px;
+        border-radius: 10px;
+      }
+      .qform .fine { font-size: 12px; margin-top: 8px; line-height: 1.5; }
+
+      /* Footer */
+      footer.site { padding: 44px 0 18px; }
+      .footer-grid { gap: 26px; }
+      .footer-col a { font-size: 14px; margin-bottom: 12px; padding: 4px 0; }
+      .footer-about p { font-size: 14px; }
+      .social-row a { width: 40px; height: 40px; }
+      .footer-bottom {
+        padding-top: 20px;
+        font-size: 11px;
+        line-height: 1.5;
+        gap: 8px;
+      }
+
+      /* Floating buttons */
+      .float-btn {
+        width: 48px;
+        height: 48px;
+        bottom: 18px;
+      }
+      #backToTop { left: 14px; }
+      #whatsappBtn { right: 14px; }
+
+      /* Soften the tap flash */
+      a, button, input, select, textarea, .btn {
+        -webkit-tap-highlight-color: rgba(242, 140, 40, 0.18);
+      }
+
+      /* Slightly gentler Ken Burns for mobile GPU headroom */
+      .hero-slide {
+        animation-name: heroKenBurnsMobile;
+      }
+    }
+
+    @keyframes heroKenBurnsMobile {
+      0%   { opacity: 0; transform: scale(1.12) translate3d(0, 0, 0); }
+      4%   { opacity: 1; transform: scale(1.10) translate3d(0, 0, 0); }
+      33%  { opacity: 1; transform: scale(1.00) translate3d(0, 0, 0); }
+      38%  { opacity: 0; transform: scale(1.00) translate3d(0, 0, 0); }
+      100% { opacity: 0; transform: scale(1.12) translate3d(0, 0, 0); }
+    }
   </style>
 </head>
 <body>
@@ -910,6 +1198,13 @@
 
 <!-- HERO -->
 <section class="hero-full" id="top">
+  <!-- FIXED BACKGROUND SLIDESHOW (Ken Burns zoom + crossfade) -->
+  <div class="hero-slides" aria-hidden="true">
+    <div class="hero-slide" style="background-image:url('https://ik.imagekit.io/vmdskv7kj/SOLAR/p.jpeg');"></div>
+    <div class="hero-slide" style="background-image:url('https://ik.imagekit.io/vmdskv7kj/SOLAR/f2.jpeg');"></div>
+    <div class="hero-slide" style="background-image:url('https://ik.imagekit.io/vmdskv7kj/SOLAR/h1.jpeg');"></div>
+  </div>
+
   <div class="wrap">
     <div class="hero-content">
       <span class="hero-eyebrow">Residential &amp; commercial solar</span>
@@ -941,7 +1236,7 @@
     </div>
     <div class="service-grid">
       <div class="service-card">
-        <div class="thumb"><img src="https://images.pexels.com/photos/9875447/pexels-photo-9875447.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Installation" /></div>
+        <div class="thumb"><img src="https://ik.imagekit.io/vmdskv7kj/SOLAR/s1.jpeg" alt="Solar panel installation on a roof" loading="lazy" /></div>
         <div class="body">
           <h3>Solar Installation</h3>
           <p>Rooftop PV systems sized to your actual usage. Panel layout, wiring, and mounting engineered for your roof.</p>
@@ -949,7 +1244,7 @@
         </div>
       </div>
       <div class="service-card">
-        <div class="thumb"><img src="https://images.pexels.com/photos/17842843/pexels-photo-17842843/free-photo-of-a-man-maintaining-an-inverter.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Inverter" /></div>
+        <div class="thumb"><img src="https://ik.imagekit.io/vmdskv7kj/SOLAR/a2.jpeg" alt="Inverter and battery backup system" loading="lazy" /></div>
         <div class="body">
           <h3>Batteries &amp; Inverters / CCTV</h3>
           <p>Backup power, inverter servicing, and CCTV camera installation for the same property.</p>
@@ -957,7 +1252,7 @@
         </div>
       </div>
       <div class="service-card">
-        <div class="thumb" style="background:#fce3c5; display:flex; align-items:center; justify-content:center; font-size:clamp(36px, 10vw, 48px);">☀️</div>
+        <div class="thumb"><img src="https://ik.imagekit.io/vmdskv7kj/SOLAR/e2.jpeg" alt="Solar water heating system" loading="lazy" /></div>
         <div class="body">
           <h3>Solar Water Heaters</h3>
           <p>Rooftop solar geysers sized to household or business demand. Cuts water heating costs.</p>
@@ -965,7 +1260,7 @@
         </div>
       </div>
       <div class="service-card">
-        <div class="thumb"><img src="https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Electrical" /></div>
+        <div class="thumb"><img src="https://ik.imagekit.io/vmdskv7kj/SOLAR/d.jpeg" alt="Electrical diagnosis and wiring inspection" loading="lazy" /></div>
         <div class="body">
           <h3>Electrical Diagnosis</h3>
           <p>Faults, tripping breakers, wiring inspections. Diagnosed and fixed by certified electricians.</p>
@@ -980,9 +1275,9 @@
 <section class="why" id="why">
   <div class="wrap why-grid">
     <div class="why-gallery">
-      <div class="gallery-item"><img src="https://images.pexels.com/photos/7102661/pexels-photo-7102661.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Solar cells" /></div>
-      <div class="gallery-item"><img src="https://images.pexels.com/photos/27863809/pexels-photo-27863809/free-photo-of-a-roof-with-solar-panels-on-it.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Roof" /></div>
-      <div class="gallery-item"><img src="https://images.pexels.com/photos/17965455/pexels-photo-17965455/free-photo-of-close-up-of-solar-panels-on-a-roof-of-a-house.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Closeup" /></div>
+      <div class="gallery-item"><img src="https://ik.imagekit.io/vmdskv7kj/SOLAR/q1.jpeg" alt="Solar array installation" loading="lazy" /></div>
+      <div class="gallery-item"><img src="https://ik.imagekit.io/vmdskv7kj/SOLAR/y.jpeg" alt="Rooftop solar panels" loading="lazy" /></div>
+      <div class="gallery-item"><img src="https://ik.imagekit.io/vmdskv7kj/SOLAR/n.jpeg" alt="Close up of solar panels" loading="lazy" /></div>
     </div>
     <div>
       <div class="section-head" style="margin-bottom:20px;">
@@ -1023,10 +1318,10 @@
       <div><h2>Recent installs</h2><p>A sample of residential and commercial systems completed in the last year.</p></div>
     </div>
     <div class="project-grid">
-      <div class="project-card"><div class="thumb"><img src="https://images.pexels.com/photos/27863809/pexels-photo-27863809/free-photo-of-a-roof-with-solar-panels-on-it.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Residence" /></div><div class="meta"><h4>Cedar Ridge Residence</h4><span>Single family rooftop</span><span class="kw">8.4 kW system</span></div></div>
-      <div class="project-card"><div class="thumb"><img src="https://images.pexels.com/photos/17965455/pexels-photo-17965455/free-photo-of-close-up-of-solar-panels-on-a-roof-of-a-house.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Signal Hill" /></div><div class="meta"><h4>Signal Hill Home</h4><span>Two story rooftop</span><span class="kw">6.2 kW system</span></div></div>
-      <div class="project-card"><div class="thumb"><img src="https://images.pexels.com/photos/35501734/pexels-photo-35501734/free-photo-of-aerial-view-of-solar-panel-rows-in-a-grid-pattern.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Warehouse" /></div><div class="meta"><h4>Northgate Distribution</h4><span>Warehouse rooftop array</span><span class="kw">240 kW system</span></div></div>
-      <div class="project-card"><div class="thumb"><img src="https://images.pexels.com/photos/12606669/pexels-photo-12606669.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Logistics" /></div><div class="meta"><h4>Riverbend Logistics Park</h4><span>Industrial rooftop array</span><span class="kw">180 kW system</span></div></div>
+      <div class="project-card"><div class="thumb"><img src="https://ik.imagekit.io/vmdskv7kj/SOLAR/l.jpeg" alt="Cedar Ridge Residence" loading="lazy" /></div><div class="meta"><h4>Cedar Ridge Residence</h4><span>Single family rooftop</span><span class="kw">8.4 kW system</span></div></div>
+      <div class="project-card"><div class="thumb"><img src="https://ik.imagekit.io/vmdskv7kj/SOLAR/e.jpeg" alt="Signal Hill Home" loading="lazy" /></div><div class="meta"><h4>Signal Hill Home</h4><span>Two story rooftop</span><span class="kw">6.2 kW system</span></div></div>
+      <div class="project-card"><div class="thumb"><img src="https://ik.imagekit.io/vmdskv7kj/SOLAR/k.jpeg" alt="Northgate Distribution" loading="lazy" /></div><div class="meta"><h4>Northgate Distribution</h4><span>Warehouse rooftop array</span><span class="kw">240 kW system</span></div></div>
+      <div class="project-card"><div class="thumb"><img src="https://ik.imagekit.io/vmdskv7kj/SOLAR/o.jpeg" alt="Riverbend Logistics Park" loading="lazy" /></div><div class="meta"><h4>Riverbend Logistics Park</h4><span>Industrial rooftop array</span><span class="kw">180 kW system</span></div></div>
     </div>
   </div>
 </section>
@@ -1053,9 +1348,9 @@
   <section class="quote-form">
     <h2>Get your free estimate</h2>
     <p class="lede">Tell us about your property. We'll follow up within two business days.</p>
-    <form class="qform" onsubmit="alert('Thank you! We will contact you shortly.'); return false;">
+    <form class="qform" id="quoteForm">
       <div class="row2">
-        <div><label for="fullname">Full name</label><input id="fullname" type="text" placeholder="Jane Mwangi" required /></div>
+        <div><label for="fullname">Full name</label><input id="fullname" type="text" placeholder="Bluelink Solutions" required /></div>
         <div><label for="email">Email</label><input id="email" type="email" placeholder="jane@email.com" required /></div>
       </div>
       <div>
@@ -1112,15 +1407,78 @@
   const menuToggle = document.getElementById('menuToggle');
   const mobileMenu = document.getElementById('mobileMenu');
 
-  menuToggle.addEventListener('click', () => {
-    mobileMenu.classList.toggle('open');
+  function setMenu(open) {
+    mobileMenu.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+
+  menuToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    setMenu(!mobileMenu.classList.contains('open'));
   });
 
-  // Close mobile menu on link click
+  // Close menu on link click
   document.querySelectorAll('.mobile-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.remove('open');
-    });
+    link.addEventListener('click', () => setMenu(false));
+  });
+
+  // Close menu when tapping outside it
+  document.addEventListener('click', (e) => {
+    if (!mobileMenu.classList.contains('open')) return;
+    if (mobileMenu.contains(e.target)) return;
+    if (menuToggle.contains(e.target)) return;
+    setMenu(false);
+  });
+
+  // Close menu on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setMenu(false);
+  });
+
+  /* ============================================================
+     QUOTE FORM → WHATSAPP
+     Composes a pre-filled WhatsApp message from the form fields
+     and opens wa.me for the business number.
+     ============================================================ */
+  const WHATSAPP_NUMBER = '254708791230';
+
+  const quoteForm = document.getElementById('quoteForm');
+  quoteForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const nameInput    = document.getElementById('fullname');
+    const emailInput   = document.getElementById('email');
+    const serviceInput = document.getElementById('service-select');
+    const messageInput = document.getElementById('message');
+
+    const name    = nameInput.value.trim();
+    const email   = emailInput.value.trim();
+    const message = messageInput.value.trim();
+
+    if (!quoteForm.checkValidity()) {
+      quoteForm.reportValidity();
+      return;
+    }
+    if (!serviceInput.value) {
+      alert('Please select a service.');
+      serviceInput.focus();
+      return;
+    }
+
+    const serviceText = serviceInput.options[serviceInput.selectedIndex].text;
+
+    const text =
+      '*New Estimate Request — Master Solar*' + '\n' +
+      '------------------------------' + '\n' +
+      'Name: '    + name    + '\n' +
+      'Email: '   + email   + '\n' +
+      'Service: ' + serviceText + '\n' +
+      'Message: ' + (message ? message : '—') + '\n' +
+      '------------------------------' + '\n' +
+      'Sent from the website contact form.';
+
+    const url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(text);
+    window.open(url, '_blank', 'noopener');
   });
 
   // SCROLL ANIMATIONS
